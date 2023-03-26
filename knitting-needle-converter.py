@@ -17,3 +17,21 @@ def us_to_mm(user_input):
         return "Knitting needle size in millimeters: " + str(us_to_mm_lab[user_input]) + "mm"
    
     return "Please check the size number and try it again."
+
+def us_to_jp(user_input):
+
+    if user_input in us_to_mm_lab:
+
+        compared_list = {}
+
+        for jp_size in jp_to_mm_lab:
+            compared_num = abs(jp_to_mm_lab[jp_size] - us_to_mm_lab[user_input])
+            compared_list[jp_size] = compared_num
+
+        for key, value in compared_list.items():
+            if value == min(compared_list.values()):
+                print("Knitting needle US size: " + str(user_input))
+                return "The nearest JP size is " + str(key) + "."
+    
+    return "Please check the size number and try it again."
+        
