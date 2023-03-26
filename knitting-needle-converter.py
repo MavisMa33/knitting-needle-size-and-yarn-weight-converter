@@ -23,12 +23,10 @@ def us_to_jp(user_input):
     if user_input in us_to_mm_lab:
 
         smallestAbs = float("inf")
-        us_mm = us_to_mm_lab[user_input]
         smallest_jp = []
 
         for jp_size in jp_to_mm_lab:
-            jp_mm = jp_to_mm_lab[jp_size]
-            dif = abs(jp_mm - us_mm)
+            dif = abs(jp_to_mm_lab[jp_size] - us_to_mm_lab[user_input])
             if dif < smallestAbs:
                 smallest_jp = []
                 smallest_jp.append(jp_size)
@@ -53,4 +51,28 @@ def us_to_jp(user_input):
     
     return "Please check the size number and try it again."
 
-print(us_to_jp(3))
+def jp_to_us(user_input):
+
+    if user_input in jp_to_mm_lab:
+
+        smallest_us = []
+        smallestAbs = float("inf")
+
+        for us_size in us_to_mm_lab:
+            dif = abs(us_to_mm_lab[us_size] - jp_to_mm_lab[user_input])
+            if dif < smallestAbs:
+                smallest_us = []
+                smallest_us.append(us_size)
+                smallestAbs = dif
+            elif dif == smallestAbs:
+                smallest_us.append(us_size)
+            else:
+                break
+        
+        return "The nearest US size is " + str(smallest_us) + "."
+    
+    return "Please check the size number and try it again."
+
+print(jp_to_us(-6))
+
+
