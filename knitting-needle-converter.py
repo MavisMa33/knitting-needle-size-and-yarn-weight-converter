@@ -22,16 +22,35 @@ def us_to_jp(user_input):
 
     if user_input in us_to_mm_lab:
 
-        compared_list = {}
+        smallestAbs = float("inf")
+        us_mm = us_to_mm_lab[user_input]
+        smallest_jp = []
 
         for jp_size in jp_to_mm_lab:
-            compared_num = abs(jp_to_mm_lab[jp_size] - us_to_mm_lab[user_input])
-            compared_list[jp_size] = compared_num
+            jp_mm = jp_to_mm_lab[jp_size]
+            dif = abs(jp_mm - us_mm)
+            if dif < smallestAbs:
+                smallest_jp = []
+                smallest_jp.append(jp_size)
+                smallestAbs = dif
+            elif dif == smallestAbs:
+                smallest_jp.append(jp_size)
+            else:
+                break
+        
+        return "The nearest JP size is " + str(smallest_jp) + "."
+    
+        # compared_list = {}
 
-        for key, value in compared_list.items():
-            if value == min(compared_list.values()):
-                print("Knitting needle US size: " + str(user_input))
-                return "The nearest JP size is " + str(key) + "."
+        # for jp_size in jp_to_mm_lab:
+        #     compared_num = abs(jp_to_mm_lab[jp_size] - us_to_mm_lab[user_input])
+        #     compared_list[jp_size] = compared_num
+
+        # for key, value in compared_list.items():
+        #     if value == min(compared_list.values()):
+        #         print("Knitting needle US size: " + str(user_input))
+        #         return "The nearest JP size is " + str(key) + "."
     
     return "Please check the size number and try it again."
-        
+
+print(us_to_jp(3))
